@@ -1,0 +1,101 @@
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+.navbar {
+  background-color: #404eed;
+  height: 76px;
+  padding: 5px 20px;
+}
+
+.logo {
+  height: 44px;
+}
+
+.series {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 15px;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.clicker-img {
+  max-width: 80%;
+  height: auto;
+}
+
+button {
+  height: 6vh;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background-color: #404eed;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.w-90vw {
+  width: 90vw;
+}
+
+/* time to organize */
+.team-wrapper {
+  width: 77px;
+  height: auto;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.team-icon {
+  position: relative;
+  width: 77px;
+  height: 77px;
+}
+
+.clicker {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  background-color: white;
+  border: solid 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: #404eed;
+}
+
+.frame {
+  display: absolute;
+  border: solid 2px;
+  background: white;
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.gap {
+  gap: 40px 30px;
+  margin: 0 20px 64px;
+}

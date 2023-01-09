@@ -1,0 +1,15 @@
+.container {
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-auto {
+  flex-basis: auto;
+}
