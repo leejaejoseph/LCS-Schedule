@@ -29,3 +29,14 @@ function removeSelected(teamId) {
   }
   data.selected.splice(index, 1);
 }
+
+var $teamsPage = document.querySelector('#submit');
+$teamsPage.addEventListener('click', dataStore);
+
+function dataStore(event) {
+  event.preventDefault();
+  data.stored = [];
+  for (var teams in data.selected) {
+    data.stored.push(teams);
+  }
+}
