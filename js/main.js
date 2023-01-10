@@ -1,3 +1,11 @@
+document.addEventListener('DOMContentLoaded', loaded);
+function loaded() {
+  for (var i = 0; i < data.selected.length; i++) {
+    var $clicker = document.querySelector('#' + data.selected[i]).querySelector('.clicker');
+    $clicker.classList.add('active');
+  }
+}
+
 var $teamIcon = document.querySelectorAll('.team');
 for (var i = 0; i < $teamIcon.length; i++) {
   $teamIcon[i].classList.add('team' + i);
@@ -37,6 +45,6 @@ function dataStore(event) {
   event.preventDefault();
   data.stored = [];
   for (var teams in data.selected) {
-    data.stored.push(teams);
+    data.stored.push(data.selected[teams]);
   }
 }
