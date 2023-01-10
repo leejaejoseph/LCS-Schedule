@@ -19,7 +19,7 @@
   width: calc(100% / 3);
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1070px) {
   .col-lg-sixth {
     width: calc(100% / 6);
   }
