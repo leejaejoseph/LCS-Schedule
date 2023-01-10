@@ -70,6 +70,7 @@ button {
 }
 
 .team-name {
+  margin: 0 auto;
   font-size: 10px;
   font-weight: 700;
   display: block;
