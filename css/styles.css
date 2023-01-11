@@ -1,0 +1,222 @@
+body {
+  font-family: "Roboto Mono", monospace;
+}
+
+div.navbar {
+  background-color: #404eed;
+  height: 76px;
+  padding: 5px 20px;
+}
+
+img.logo {
+  height: 44px;
+}
+
+p.series {
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 15px;
+}
+
+.nav-items {
+  list-style: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.clicker-img {
+  max-height: 80%;
+  max-width: 85%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.team-wrapper {
+  width: 100%;
+  height: auto;
+}
+
+.frame {
+  display: absolute;
+  border: solid 4px;
+  background: white;
+  width: 77px;
+  height: 77px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.team-icon {
+  display: block;
+  position: relative;
+  width: 77px;
+  height: 77px;
+  margin-bottom: 4px;
+}
+
+.team-name {
+  font-size: 10px;
+  font-weight: 700;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+.clicker {
+  position: absolute;
+  right: 10px;
+  top: 4px;
+  background-color: white;
+  border: solid 2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.active {
+  background-color: #404eed;
+}
+
+button {
+  height: 6vh;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  background-color: #404eed;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #3e4ce7;
+}
+
+button:active {
+  transform: translateY(4px);
+}
+
+.desktop-only {
+  display: none;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.w-90vw {
+  width: 90vw;
+}
+
+.gap-40,
+.gap-30,
+.gap-80 {
+  gap: 20px 0;
+}
+
+.mb-50,
+.mb-30 {
+  margin-bottom: 50px;
+}
+
+@media only screen and (min-width: 576px) {
+  .title {
+    font-size: 40px;
+    font-weight: 500;
+    margin: 20px;
+  }
+
+  .frame {
+    width: 100px;
+    height: 100px;
+  }
+
+  .team-name {
+    padding: 5px 20%;
+    font-size: 15px;
+  }
+
+  .team-icon {
+    width: 100px;
+    height: 100px;
+  }
+
+  .clicker {
+    width: 20px;
+    height: 20px;
+    right: 5px;
+    top: 5px;
+  }
+
+  .desktop-only {
+    display: inline;
+  }
+
+  .gap-30 {
+    gap: 30px 0;
+  }
+
+  .mb-30 {
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (min-width: 1266px) {
+  button {
+    font-size: 40px;
+  }
+
+  .title {
+    font-size: 64px;
+  }
+
+  .frame {
+    width: 160px;
+    height: 160px;
+  }
+
+  .team-name {
+    font-size: 20px;
+  }
+
+  .team-icon {
+    width: 160px;
+    height: 160px;
+  }
+
+  .clicker {
+    width: 20px;
+    height: 20px;
+    right: 10px;
+    top: 15px;
+  }
+
+  .gap-80 {
+    gap: 80px 0;
+  }
+
+  .mb-50 {
+    margin-bottom: 50px;
+  }
+}

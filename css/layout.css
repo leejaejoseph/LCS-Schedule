@@ -1,0 +1,30 @@
+.container {
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-full {
+  width: 100%;
+}
+
+.column-half {
+  width: 50%;
+}
+
+.column-auto {
+  flex-basis: auto;
+}
+
+.col-sm-third,
+.col-lg-sixth {
+  width: calc(100% / 3);
+}
+
+@media only screen and (min-width: 1075px) {
+  .col-lg-sixth {
+    width: calc(100% / 6);
+  }
+}
