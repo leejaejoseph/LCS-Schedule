@@ -1,9 +1,31 @@
 document.addEventListener('DOMContentLoaded', DOMLoaded);
 function DOMLoaded() {
   getTeamsAPI();
+  getStandingsAPI();
+  viewSwap(data.view);
 }
 
-var $teams = document.querySelector('#teams');
+document.querySelector('.page-teams').addEventListener('click', function () {
+  data.view = 'teams';
+  viewSwap('teams');
+});
+
+document.querySelector('.page-standings').addEventListener('click', function () {
+  data.view = 'standings';
+  viewSwap('standings');
+});
+
+function viewSwap(search) {
+  var $containers = document.querySelectorAll('.container');
+  for (var i = 0; i < $containers.length; i++) {
+    if ($containers[i].getAttribute('data-view') === search) {
+      data.view = search;
+      $containers[i].classList.remove('hidden');
+    } else {
+      $containers[i].classList.add('hidden');
+    }
+  }
+}
 
 function getTeamsAPI() {
   var xhr = new XMLHttpRequest();
@@ -16,6 +38,7 @@ function getTeamsAPI() {
 }
 
 function renderTeamIcons(teamsArray) {
+  var $teams = document.querySelector('#teams'); // break point
   for (var i = 0; i < teamsArray.length; i++) {
     var $team = document.createElement('div');
     $team.setAttribute('class', 'col-sm-third col-lg-sixth');
@@ -55,7 +78,6 @@ function renderTeamIcons(teamsArray) {
       $teams.querySelector('#' + data.selected[j]).querySelector('.clicker').classList.add('active');
     }
   }
-  return $teams;
 }
 
 function iconClicked(event) {
@@ -94,5 +116,68 @@ function dataStore(event) {
   data.stored = [];
   for (var teams in data.selected) {
     data.stored.push(data.selected[teams]);
+  }
+}
+
+function getStandingsAPI() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.pandascore.co/tournaments/8252/standings?token=gkNwPHKrVqhu7-uwgHyXiJVS1R7o5Cxst-R4Rp616xbYT0PlBMQ&page=1&per_page=50');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    renderStandings(xhr.response);
+  });
+  xhr.send();
+}
+
+function renderStandings(teamsArray) {
+  var $leftStanding = document.querySelector('#left-standing-col');
+  var $rightStanding = document.querySelector('#right-standing-col');
+  for (var i = 0; i < teamsArray.length; i++) {
+    var $standingRow = document.createElement('div');
+    $standingRow.setAttribute('class', 'row ai-center standings-wrapper p-5-lg-70');
+    if (i < teamsArray.length / 2) {
+      $leftStanding.appendChild($standingRow);
+    } else {
+      $rightStanding.appendChild($standingRow);
+    }
+
+    var $numStandingDiv = document.createElement('div');
+    $numStandingDiv.setAttribute('class', 'column-auto');
+    $standingRow.appendChild($numStandingDiv);
+
+    var $numStanding = document.createElement('p');
+    $numStanding.setAttribute('class', 'standings-num');
+    $numStanding.textContent = teamsArray[i].rank;
+    if (Number($numStanding.textContent) >= 10) {
+      $numStanding.setAttribute('class', 'standings-num double-digit');
+    }
+    $numStandingDiv.appendChild($numStanding);
+
+    var $imgStandingDiv = document.createElement('div');
+    $imgStandingDiv.setAttribute('class', 'column-auto standings-img-frame');
+    $standingRow.appendChild($imgStandingDiv);
+
+    var $imgStanding = document.createElement('img');
+    $imgStanding.setAttribute('class', 'standings-img');
+    $imgStanding.setAttribute('src', teamsArray[i].team.image_url);
+    $imgStandingDiv.appendChild($imgStanding);
+
+    var $nameStandingDiv = document.createElement('div');
+    $nameStandingDiv.setAttribute('class', 'column-auto');
+    $standingRow.appendChild($nameStandingDiv);
+
+    var $nameStanding = document.createElement('p');
+    $nameStanding.setAttribute('class', 'standings-name');
+    $nameStanding.textContent = teamsArray[i].team.name;
+    $nameStandingDiv.appendChild($nameStanding);
+
+    var $wlStandingDiv = document.createElement('div');
+    $wlStandingDiv.setAttribute('class', 'column-auto');
+    $standingRow.appendChild($wlStandingDiv);
+
+    var $wlStanding = document.createElement('p');
+    $wlStanding.setAttribute('class', 'standings-wl');
+    $wlStanding.textContent = teamsArray[i].wins + 'W—' + teamsArray[i].losses + 'L';
+    $wlStandingDiv.appendChild($wlStanding);
   }
 }

@@ -25,16 +25,17 @@
         </a>
       </div>
       <ul class="nav-items desktop-only">
-        <li><a href="#">Teams</a></li>
+        <li><a class="page-teams" href="#">Teams</a></li>
+        <li><a class="page-standings" href="#">Standings</a></li>
       </ul>
     </div>
   </header>
   <main>
-    <div class="container w-90vw">
+    <div data-view="teams" class="container w-90vw hidden">
       <div class="row">
         <p class="column-half title">LCS Teams</p>
       </div>
-      <div id="teams" class="row flex-wrap gap-30 gap-40 gap-80 mb-50 mb-30">
+      <div id="teams" class="row flex-wrap gap-30 gap-40 gap-80 mb-20 mb-30 mb-50">
       </div>
       <div class="row jc-center">
         <div class="column-full">
@@ -42,6 +43,16 @@
         </div>
       </div>
     </div>
+    <div data-view="standings" class="container hidden">
+      <div class="row w-90vw m-0-auto">
+        <p class="column-half title">Standings</p>
+      </div>
+      <div class="row flex-wrap mt-50 gap-lr-40">
+        <div id="left-standing-col" class="col-sm-full col-lg-half standings-col-t">
+        </div>
+        <div id="right-standing-col" class="col-sm-full col-lg-half standings-col-lg-t">
+        </div>
+      </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
