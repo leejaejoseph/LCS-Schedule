@@ -12,5 +12,4 @@ function JSONStorage(event) {
 
 if (localStorage.getItem('data-in-JSON') !== null) {
   data = JSON.parse(localStorage.getItem('data-in-JSON'));
-
 }
