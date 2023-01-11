@@ -78,7 +78,6 @@ function renderTeamIcons(teamsArray) {
       $teams.querySelector('#' + data.selected[j]).querySelector('.clicker').classList.add('active');
     }
   }
-  return $teams;
 }
 
 function iconClicked(event) {
