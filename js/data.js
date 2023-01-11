@@ -1,7 +1,8 @@
 /* exported data */
 var data = {
   selected: [],
-  stored: []
+  stored: [],
+  view: 'teams'
 };
 
 window.addEventListener('beforeunload', JSONStorage);

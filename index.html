@@ -25,17 +25,17 @@
         </a>
       </div>
       <ul class="nav-items desktop-only">
-        <li><a href="#">Teams</a></li>
-        <li><a href="#">Standings</a></li>
+        <li><a class="page-teams" href="#">Teams</a></li>
+        <li><a class="page-standings" href="#">Standings</a></li>
       </ul>
     </div>
   </header>
   <main>
-    <div class="container w-90vw hidden">
+    <div data-view="teams" class="container w-90vw hidden">
       <div class="row">
         <p class="column-half title">LCS Teams</p>
       </div>
-      <div id="teams" class="row flex-wrap gap-30 gap-40 gap-80 mb-50 mb-30">
+      <div id="teams" class="row flex-wrap gap-30 gap-40 gap-80 mb-20 mb-30 mb-50">
       </div>
       <div class="row jc-center">
         <div class="column-full">
@@ -43,163 +43,14 @@
         </div>
       </div>
     </div>
-    <div class="container">
+    <div data-view="standings" class="container hidden">
       <div class="row w-90vw m-0-auto">
         <p class="column-half title">Standings</p>
       </div>
       <div class="row flex-wrap mt-50 gap-lr-40">
-        <div class="col-sm-full col-lg-half">
-          <div class="row ai-center standings-wrapper double-top-b p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img" src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto standings-name-frame">
-              <p class="standings-name">Counter Logic Gaming</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">Golden Guardians</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper double-bot-b p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
+        <div id="left-standing-col" class="col-sm-full col-lg-half standings-col-t">
         </div>
-        <div class="col-sm-full col-lg-half">
-          <div class="row ai-center standings-wrapper double-top-b p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto standings-name-frame">
-              <p class="standings-name">Counter Logic Gaming</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">Golden Guardians</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
-          <div class="row ai-center standings-wrapper double-bot-b p-5-lg-50">
-            <div class="column-auto">
-              <p class="standings-num">1</p>
-            </div>
-            <div class="column-auto standings-img-frame">
-              <img class="standings-img"
-                src="https://cdn.pandascore.co/images/team/image/132126/evil_geniuses.n_alogo_profile.png">
-            </div>
-            <div class="column-auto">
-              <p class="standings-name">100 thieves</p>
-            </div>
-            <div class="column-auto">
-              <p class="standings-wl">0W-0L</p>
-            </div>
-          </div>
+        <div id="right-standing-col" class="col-sm-full col-lg-half standings-col-lg-t">
         </div>
       </div>
   </main>
