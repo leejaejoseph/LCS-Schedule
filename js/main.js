@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', DOMLoaded);
+/* document.addEventListener('DOMContentLoaded', DOMLoaded);
 function DOMLoaded() {
   getTeamsAPI();
 }
@@ -96,3 +96,4 @@ function dataStore(event) {
     data.stored.push(data.selected[teams]);
   }
 }
+*/

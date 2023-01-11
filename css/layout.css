@@ -6,12 +6,17 @@
   display: flex;
 }
 
+.column-half {
+  width: 50%;
+}
+
 .column-full {
   width: 100%;
 }
 
-.column-half {
-  width: 50%;
+.col-sm-full,
+.col-lg-half {
+  width: 100%;
 }
 
 .column-auto {
@@ -26,5 +31,9 @@
 @media only screen and (min-width: 1075px) {
   .col-lg-sixth {
     width: calc(100% / 6);
+  }
+
+  .col-lg-half {
+    flex-basis: 50%;
   }
 }
