@@ -6,7 +6,8 @@
   <title>AJAX Project</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto+Mono:wght@100;200;300;400;500;600;700&display=swap"
     rel="stylesheet">
   <link rel="icon" href="images/favicon.ico">
   <link rel="stylesheet" href="css/reset.css">
@@ -25,17 +26,17 @@
         </a>
       </div>
       <ul class="nav-items desktop-only">
-        <li><a class="page-teams" href="#">Teams</a></li>
-        <li><a class="page-standings" href="#">Standings</a></li>
+        <li><a class="page-teams">Teams</a></li>
+        <li><a class="page-standings">Standings</a></li>
       </ul>
     </div>
   </header>
   <main>
-    <div data-view="teams" class="container w-90vw hidden">
+    <div data-view="teams" class="container mw-1500  w-90vw hidden">
       <div class="row">
         <p class="column-half title">LCS Teams</p>
       </div>
-      <div id="teams" class="row flex-wrap gap-30 gap-40 gap-80 mb-20 mb-30 mb-50">
+      <div id="teams" class="row flex-wrap">
       </div>
       <div class="row jc-center">
         <div class="column-full">
@@ -47,12 +48,13 @@
       <div class="row w-90vw m-0-auto">
         <p class="column-half title">Standings</p>
       </div>
-      <div class="row flex-wrap mt-50 gap-lr-40">
+      <div class="row flex-wrap mt-50">
         <div id="left-standing-col" class="col-sm-full col-lg-half standings-col-t">
         </div>
         <div id="right-standing-col" class="col-sm-full col-lg-half standings-col-lg-t">
         </div>
       </div>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
