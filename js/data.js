@@ -2,7 +2,8 @@
 var data = {
   selected: [],
   stored: [],
-  view: 'teams'
+  view: 'schedule',
+  inner: 'all-view'
 };
 
 window.addEventListener('beforeunload', JSONStorage);
