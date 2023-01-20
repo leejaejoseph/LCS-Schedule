@@ -46,14 +46,14 @@ function getTeamsAPI() {
 }
 
 function renderTeamIcons(teamsArray) {
-  var $teams = document.querySelector('#teams'); // break point
+  var $teams = document.querySelector('#teams');
   for (var i = 0; i < teamsArray.length; i++) {
     var $team = document.createElement('div');
     $team.setAttribute('class', 'col-sm-third col-lg-sixth');
     $teams.appendChild($team);
 
     var $teamWrapper = document.createElement('div');
-    $teamWrapper.setAttribute('id', 'id-' + teamsArray[i].id); // removes lcs-
+    $teamWrapper.setAttribute('id', 'id-' + teamsArray[i].id);
     $teamWrapper.setAttribute('class', 'row team-wrapper');
     $team.appendChild($teamWrapper);
 
