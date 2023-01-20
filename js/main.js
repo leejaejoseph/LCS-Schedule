@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', DOMLoaded);
 function DOMLoaded() {
   getTeamsAPI();
   getStandingsAPI();
+  getScheduleAPI();
 }
 
 document.querySelector('.page-teams').addEventListener('click', function () {
@@ -12,6 +13,11 @@ document.querySelector('.page-teams').addEventListener('click', function () {
 document.querySelector('.page-standings').addEventListener('click', function () {
   data.view = 'standings';
   viewSwap('standings');
+});
+
+document.querySelector('.page-schedule').addEventListener('click', function () {
+  data.view = 'schedule';
+  viewSwap('schedule');
 });
 
 function viewSwap(search) {
@@ -34,6 +40,7 @@ function getTeamsAPI() {
     renderTeamIcons(xhr.response);
     renderTeamRosters(xhr.response);
     viewSwap(data.view);
+    updateTeamIdAndImgObj(xhr.response);
   });
   xhr.send();
 }
@@ -46,13 +53,13 @@ function renderTeamIcons(teamsArray) {
     $teams.appendChild($team);
 
     var $teamWrapper = document.createElement('div');
-    $teamWrapper.setAttribute('id', 'lcs-' + teamsArray[i].slug);
+    $teamWrapper.setAttribute('id', 'id-' + teamsArray[i].id); // removes lcs-
     $teamWrapper.setAttribute('class', 'row team-wrapper');
     $team.appendChild($teamWrapper);
 
     var $teamIcon = document.createElement('a');
     $teamIcon.setAttribute('class', 'column-auto team-icon');
-    $teamIcon.setAttribute('id', 'icon-' + teamsArray[i].slug);
+    $teamIcon.setAttribute('id', 'icon-' + teamsArray[i].id);
     $teamIcon.addEventListener('click', iconClicked);
     $teamWrapper.appendChild($teamIcon);
 
@@ -76,7 +83,7 @@ function renderTeamIcons(teamsArray) {
   }
   if (data.selected.length > 0) {
     for (var j = 0; j < data.selected.length; j++) {
-      $teams.querySelector('#' + data.selected[j]).querySelector('.clicker').classList.add('active');
+      $teams.querySelector('#id-' + data.selected[j]).querySelector('.clicker').classList.add('active');
     }
   }
 }
@@ -98,10 +105,12 @@ function clickerSwitch(event) {
 }
 
 function addSelectedToData(teamId) {
+  teamId = teamId.slice(3, teamId.length);
   data.selected.push(teamId);
 }
 
 function removeSelectedToData(teamId) {
+  teamId = teamId.slice(3, teamId.length);
   for (var i = 0; i < data.selected.length; i++) {
     if (data.selected[i] === teamId) {
       data.selected.splice(i, 1);
@@ -118,6 +127,9 @@ function dataStore(event) {
   for (var teams in data.selected) {
     data.stored.push(data.selected[teams]);
   }
+  document.querySelector('[data-view="all-games"]').remove();
+  document.querySelector('[data-view="selected-games"]').remove();
+  toDisplay(storedGamesArray);
 }
 
 function getStandingsAPI() {
@@ -305,4 +317,199 @@ function renderTeamRosters(APIArray) {
 function viewSwapRosterID(event) {
   var $reference = event.target.closest('.standings-wrapper').getAttribute('data-reference');
   viewSwap($reference);
+}
+
+function getScheduleAPI() {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', 'https://api.pandascore.co/series/5408/matches/upcoming?token=gkNwPHKrVqhu7-uwgHyXiJVS1R7o5Cxst-R4Rp616xbYT0PlBMQ&sort=&page=1&per_page=50');
+  xhr.responseType = 'json';
+  xhr.addEventListener('load', function () {
+    toDisplay(xhr.response);
+  });
+  xhr.send();
+}
+
+var teamIdAndImg = {};
+function updateTeamIdAndImgObj(responseArray) {
+  for (var i = 0; i < responseArray.length; i++) {
+    var teamId = responseArray[i].id;
+    teamIdAndImg[teamId] = {
+      image_url: responseArray[i].image_url,
+      name: responseArray[i].name
+    };
+  }
+}
+
+var storedGamesArray;
+function toDisplay(responseGamesArray) {
+  storedGamesArray = responseGamesArray;
+  var allDisplay = [];
+  var selectedArray = [];
+  var storedIds = [];
+  for (var id in data.stored) {
+    storedIds.push(Number(data.stored[id]));
+  }
+  for (var i = 0; i < responseGamesArray.length; i++) {
+    var gameObj = {};
+    gameObj.date = apiToDate(responseGamesArray[i].begin_at.slice(5, 10));
+    gameObj.left = {
+      id: responseGamesArray[i].results[0].team_id,
+      team_image: teamIdAndImg[responseGamesArray[i].results[0].team_id].image_url,
+      team_name: teamIdAndImg[responseGamesArray[i].results[0].team_id].name
+    };
+    gameObj.right = {
+      id: responseGamesArray[i].results[1].team_id,
+      team_image: teamIdAndImg[responseGamesArray[i].results[1].team_id].image_url,
+      team_name: teamIdAndImg[responseGamesArray[i].results[1].team_id].name
+    };
+    allDisplay.push(gameObj);
+    if (storedIds.indexOf(responseGamesArray[i].results[0].team_id) > -1 || storedIds.indexOf(responseGamesArray[i].results[1].team_id) > -1) {
+      if (storedIds.indexOf(responseGamesArray[i].results[1].team_id) > -1) {
+        var temp = {};
+        temp = gameObj.right;
+        gameObj.right = gameObj.left;
+        gameObj.left = temp;
+      }
+      selectedArray.push(gameObj);
+    }
+  }
+  renderSchedule([allDisplay, selectedArray]);
+}
+
+function renderSchedule(matches) {
+  var $schedule = document.querySelector('[data-view="schedule"]');
+  for (var i = 0; i < matches.length; i++) {
+    var $scheduleContainer = document.createElement('div');
+    if (i === 0) {
+      $scheduleContainer.setAttribute('data-view', 'all-games');
+    } else {
+      $scheduleContainer.setAttribute('data-view', 'selected-games');
+    }
+    $schedule.appendChild($scheduleContainer);
+
+    for (var j = 0; j < matches[i].length; j++) {
+      var $scheduleBanners = document.createElement('div');
+      $scheduleBanners.setAttribute('class', 'row schedule-banners');
+      if (j === 0) {
+        $scheduleBanners.setAttribute('class', 'row schedule-banners standings-col-t');
+      }
+      $scheduleContainer.appendChild($scheduleBanners);
+
+      var $dateCol = document.createElement('div');
+      $dateCol.setAttribute('class', 'column-auto');
+      $scheduleBanners.appendChild($dateCol);
+
+      var $scheduleDate = document.createElement('p');
+      $scheduleDate.setAttribute('class', 'schedule-date');
+      $scheduleDate.textContent = matches[i][j].date;
+      $dateCol.appendChild($scheduleDate);
+
+      var $matchCol = document.createElement('div');
+      $matchCol.setAttribute('class', 'column-full');
+      $scheduleBanners.appendChild($matchCol);
+
+      var $matchRow = document.createElement('div');
+      $matchRow.setAttribute('class', 'row match-row');
+      $matchCol.appendChild($matchRow);
+
+      var $leftSideCol = document.createElement('div');
+      $leftSideCol.setAttribute('class', 'column-half p-100 ra ai-center');
+      $matchRow.appendChild($leftSideCol);
+
+      var $leftSideRow = document.createElement('div');
+      $leftSideRow.setAttribute('class', 'row ra ai-center');
+      $leftSideCol.appendChild($leftSideRow);
+
+      var $leftNameCol = document.createElement('div');
+      $leftNameCol.setAttribute('class', 'column-auto desktop-only');
+      $leftSideRow.appendChild($leftNameCol);
+
+      var $leftName = document.createElement('p');
+      $leftName.setAttribute('class', 'left-name');
+      $leftName.textContent = matches[i][j].left.team_name;
+      $leftNameCol.appendChild($leftName);
+
+      var $leftImgCol = document.createElement('div');
+      $leftImgCol.setAttribute('class', 'column-auto');
+      $leftSideRow.appendChild($leftImgCol);
+
+      var $leftImg = document.createElement('img');
+      $leftImg.setAttribute('src', matches[i][j].left.team_image);
+      $leftImg.setAttribute('class', 'schedule-img');
+      $leftImgCol.appendChild($leftImg);
+
+      var $versus = document.createElement('p');
+      $versus.setAttribute('class', 'versus');
+      $versus.textContent = 'vs';
+      $matchRow.appendChild($versus);
+
+      var $rightSideCol = document.createElement('div');
+      $rightSideCol.setAttribute('class', 'p-100 column-half ai-center');
+      $matchRow.appendChild($rightSideCol);
+
+      var $rightSideRow = document.createElement('div');
+      $rightSideRow.setAttribute('class', 'row ai-center');
+      $rightSideCol.appendChild($rightSideRow);
+
+      var $rightImgCol = document.createElement('div');
+      $rightImgCol.setAttribute('class', 'column-auto');
+      $rightSideRow.appendChild($rightImgCol);
+
+      var $rightImg = document.createElement('img');
+      $rightImg.setAttribute('src', matches[i][j].right.team_image);
+      $rightImg.setAttribute('class', 'schedule-img');
+      $rightImgCol.appendChild($rightImg);
+
+      var $rightNameCol = document.createElement('div');
+      $rightNameCol.setAttribute('class', 'column-auto desktop-only');
+      $rightSideRow.appendChild($rightNameCol);
+
+      var $rightName = document.createElement('p');
+      $rightName.setAttribute('class', 'right-name');
+      $rightName.textContent = matches[i][j].right.team_name;
+      $rightNameCol.appendChild($rightName);
+    }
+  }
+  activeSchedule(event);
+}
+
+function apiToDate(date) {
+  var dayArray = date.split('-');
+  var returnDate = '';
+  if (dayArray[0][0] === '0') {
+    returnDate += dayArray[0][1];
+  } else {
+    returnDate += dayArray[0];
+  }
+  returnDate += '/' + dayArray[1];
+  return returnDate;
+}
+
+document.querySelector('.all-games').addEventListener('click', activeSchedule);
+document.querySelector('.liked-teams').addEventListener('click', activeSchedule);
+
+function activeSchedule(event) {
+  var currentView;
+  if (event.target.id) {
+    currentView = event.target.id;
+  } else {
+    currentView = data.inner;
+  }
+  var $allView = document.querySelector('#all-view');
+  var $likedView = document.querySelector('#liked-view');
+  var $allGames = document.querySelector('[data-view="all-games"]');
+  var $likedGames = document.querySelector('[data-view="selected-games"]');
+  if (currentView === 'all-view') {
+    $allView.classList.add('text-active');
+    $likedView.classList.remove('text-active');
+    $allGames.classList.remove('hidden');
+    $likedGames.classList.add('hidden');
+    data.inner = 'all-view';
+  } else {
+    $allView.classList.remove('text-active');
+    $likedView.classList.add('text-active');
+    $allGames.classList.add('hidden');
+    $likedGames.classList.remove('hidden');
+    data.inner = 'selected-view';
+  }
 }

@@ -92,6 +92,16 @@ p.series {
   justify-content: center;
 }
 
+.games-selector {
+  padding: 20px;
+  gap: 20px;
+  font-size: 20px;
+}
+
+.text-active {
+  color: #404eed;
+}
+
 .standings-wrapper {
   border-bottom: 2px solid #bbb;
   border-left: none;
@@ -222,6 +232,40 @@ p.series {
   color: white;
 }
 
+.schedule-banners {
+  align-items: center;
+  border-bottom: 2px solid #bbb;
+  padding: 10px 20px;
+}
+
+.schedule-img {
+  margin: 0 30px;
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.schedule-date {
+  display: inline;
+  font-size: 20px;
+  font-weight: 500;
+  margin-right: 15px;
+}
+
+.versus {
+  display: inline;
+}
+
+.match-row {
+  align-items: center;
+  justify-content: center;
+}
+
+.right-name,
+.left-name {
+  display: inline;
+}
+
 .active {
   background-color: #404eed;
 }
@@ -277,6 +321,10 @@ button:active {
 
 .m-0-auto {
   margin: 0 auto;
+}
+
+.ra {
+  justify-content: right;
 }
 
 @media only screen and (min-width: 576px) {
@@ -389,8 +437,36 @@ button:active {
     height: 155px;
   }
 
+  .schedule-banners {
+    padding: 10px 80px;
+  }
+
   .standings-name {
     letter-spacing: 1px;
+  }
+
+  .schedule-img {
+    width: 135px;
+    height: 145px;
+  }
+
+  .schedule-date {
+    font-size: 32px;
+  }
+
+  .right-name,
+  .left-name {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  #all-view,
+  #liked-view {
+    margin: 0 40px;
+  }
+
+  .p-100 {
+    padding: 0 100px;
   }
 
   .desktop-only {
