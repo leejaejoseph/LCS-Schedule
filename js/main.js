@@ -191,15 +191,15 @@ function renderRosters(APIArray) {
 
       const currentRole = APIArray[i].players[$currentPAI].role;
       if (currentRole === 'top') {
-        $rosterRole.setAttribute('src', '../images/TOP.png');
+        $rosterRole.setAttribute('src', 'https://cdn.discordapp.com/attachments/819345414808666115/1085037116951629937/TOP.png');
       } else if (currentRole === 'jun') {
-        $rosterRole.setAttribute('src', '../images/JUNGLE.png');
+        $rosterRole.setAttribute('src', 'https://cdn.discordapp.com/attachments/819345414808666115/1085037116272152646/JUNGLE.png');
       } else if (currentRole === 'mid') {
-        $rosterRole.setAttribute('src', '../images/MIDDLE.png');
+        $rosterRole.setAttribute('src', 'https://cdn.discordapp.com/attachments/819345414808666115/1085037116490268723/MIDDLE.png');
       } else if (currentRole === 'adc') {
-        $rosterRole.setAttribute('src', '../images/ADC.png');
+        $rosterRole.setAttribute('src', 'https://cdn.discordapp.com/attachments/819345414808666115/1085037116075028510/ADC.png');
       } else if (currentRole === 'sup') {
-        $rosterRole.setAttribute('src', '../images/SUPPORT.png');
+        $rosterRole.setAttribute('src', 'https://cdn.discordapp.com/attachments/819345414808666115/1085037116741922899/SUPPORT.png');
       }
       $rosterRoleDiv.appendChild($rosterRole);
 
