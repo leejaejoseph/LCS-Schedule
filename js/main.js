@@ -34,13 +34,20 @@ function createDom(apiUrls) {
   xhrStanding.responseType = 'json';
   xhrStanding.addEventListener('load', function () {
     standingRes = xhrStanding.response;
-    renderDom(teamsRes, scheduleRes, standingRes);
   });
-  xhrTeams.send();
-  xhrSchedule.send();
-  xhrStanding.send();
-}
 
+  Promise.all([xhrTeams, xhrSchedule, xhrStanding].map(req => new Promise((resolve, reject) => {
+    req.addEventListener('load', resolve);
+    req.addEventListener('error', reject);
+    req.send();
+  })))
+    .then(() => {
+      renderDom(teamsRes, scheduleRes, standingRes);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
 function renderDom(teamsArr, scheduleArr, standingArr) {
   renderTeamsPage(teamsArr);
   renderRosters(teamsArr);
