@@ -16,21 +16,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function createDom(apiUrls) {
   const xhrTeams = new XMLHttpRequest();
-  xhrTeams.open('GET', apiUrls.teamsApi);
+  xhrTeams.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrls.teamsApi);
   xhrTeams.responseType = 'json';
   xhrTeams.addEventListener('load', function () {
     teamsRes = xhrTeams.response;
   });
 
   const xhrSchedule = new XMLHttpRequest();
-  xhrSchedule.open('GET', apiUrls.scheduleApi);
+  xhrSchedule.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrls.scheduleApi);
   xhrSchedule.responseType = 'json';
   xhrSchedule.addEventListener('load', function () {
     scheduleRes = xhrSchedule.response;
   });
 
   const xhrStanding = new XMLHttpRequest();
-  xhrStanding.open('GET', apiUrls.standingsApi);
+  xhrStanding.open('GET', 'https://lfz-cors.herokuapp.com/?url=' + apiUrls.standingsApi);
   xhrStanding.responseType = 'json';
   xhrStanding.addEventListener('load', function () {
     standingRes = xhrStanding.response;
