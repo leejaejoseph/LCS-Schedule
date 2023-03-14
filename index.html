@@ -13,6 +13,8 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
   <header>
@@ -30,14 +32,24 @@
         <li><a class="page-standings">Standings</a></li>
         <li><a class="page-schedule">Schedule</a></li>
       </ul>
+      <button class="navbar-toggle">
+        <span class="fa fa-bars"></span>
+      </button>
+    </div>
+    <div class="menu-page hidden">
+      <ul class="menu-buttons">
+        <li><a class="page-teams">Teams</a></li>
+        <li><a class="page-standings">Standings</a></li>
+        <li><a class="page-schedule">Schedule</a></li>
+      </ul>
     </div>
   </header>
   <main>
-    <div data-view="teams" class="container mw-1500  w-90vw hidden">
+    <div data-view="page-teams" class="container mw-1500  w-90vw hidden">
       <div class="row">
         <p class="column-half title">LCS Teams</p>
       </div>
-      <div id="teams" class="row flex-wrap">
+      <div id="teamClickers" class="row flex-wrap">
       </div>
       <div class="row jc-center">
         <div class="column-full">
@@ -45,7 +57,7 @@
         </div>
       </div>
     </div>
-    <div data-view="standings" class="container hidden">
+    <div id="standings" data-view="page-standings" class="container hidden">
       <div class="row w-90vw m-0-auto">
         <p class="column-half title">Standings</p>
       </div>
@@ -56,12 +68,16 @@
         </div>
       </div>
     </div>
-    <div data-view="schedule" class="container hidden">
+    <div id="schedule" data-view="page-schedule" class="container hidden">
+      <div class="row w-90vw m-0-auto">
+        <p class="column-half title">Schedule</p>
+      </div>
       <div class="row games-selector">
         <a id="all-view" class="schedule-anchor all-games text-active">All Games</a>
         <a id="liked-view" class="schedule-anchor liked-teams">Liked Teams</a>
       </div>
     </div>
+    <section class="schedule-games"></section>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
