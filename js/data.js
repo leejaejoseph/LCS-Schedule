@@ -2,7 +2,7 @@
 let data = {
   selected: [],
   stored: [],
-  view: 'teams',
+  view: 'page-teams',
   inner: 'all-view'
 };
 
