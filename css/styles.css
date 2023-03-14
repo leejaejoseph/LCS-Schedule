@@ -35,6 +35,19 @@ p.series {
   margin: 0 30px;
 }
 
+.navbar-toggle {
+  display: block;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 10px;
+  margin-right: 10px;
+  color: white;
+  font-size: 1.5rem;
+  position: fixed;
+  right: 0;
+}
+
 .title {
   color: #363636;
   font-size: 28px;
@@ -270,7 +283,7 @@ p.series {
   background-color: #404eed;
 }
 
-button {
+#submit {
   height: 6vh;
   width: 100%;
   border: 0;
@@ -283,11 +296,11 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+#submit:hover {
   background-color: #3e4ce7;
 }
 
-button:active {
+#submit:active {
   transform: translateY(4px);
 }
 
@@ -325,6 +338,26 @@ button:active {
 
 .ra {
   justify-content: right;
+}
+
+.menu-page {
+  z-index: 5;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(200, 200, 200);
+  padding-top: 20px;
+}
+
+.menu-buttons {
+  list-style: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.menu-buttons > li {
+  margin-top: 20px;
 }
 
 @media only screen and (min-width: 576px) {
@@ -495,6 +528,10 @@ button:active {
 
   .w-95vw {
     width: 95vw;
+  }
+
+  .navbar-toggle {
+    display: none;
   }
 }
 

@@ -1,5 +1,5 @@
 /* exported data */
-var data = {
+let data = {
   selected: [],
   stored: [],
   view: 'schedule',
