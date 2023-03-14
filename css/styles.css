@@ -395,7 +395,7 @@ p.series {
 
 @media only screen and (min-width: 1075px) {
   .roster-list {
-    height: 68vh;
+    height: 69vh;
     flex-direction: row;
     justify-content: space-evenly;
   }
