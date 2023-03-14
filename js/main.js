@@ -191,15 +191,15 @@ function renderRosters(APIArray) {
 
       const currentRole = APIArray[i].players[$currentPAI].role;
       if (currentRole === 'top') {
-        $rosterRole.setAttribute('src', '/images/TOP.png');
+        $rosterRole.setAttribute('src', '../images/TOP.png');
       } else if (currentRole === 'jun') {
-        $rosterRole.setAttribute('src', '/images/JUNGLE.png');
+        $rosterRole.setAttribute('src', '../images/JUNGLE.png');
       } else if (currentRole === 'mid') {
-        $rosterRole.setAttribute('src', '/images/MIDDLE.png');
+        $rosterRole.setAttribute('src', '../images/MIDDLE.png');
       } else if (currentRole === 'adc') {
-        $rosterRole.setAttribute('src', '/images/ADC.png');
+        $rosterRole.setAttribute('src', '../images/ADC.png');
       } else if (currentRole === 'sup') {
-        $rosterRole.setAttribute('src', '/images/SUPPORT.png');
+        $rosterRole.setAttribute('src', '../images/SUPPORT.png');
       }
       $rosterRoleDiv.appendChild($rosterRole);
 
