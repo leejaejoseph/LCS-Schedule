@@ -8,7 +8,7 @@ To get started, simply follow the link on the right sidebar under the About sect
 
 You can also download the repository and load the project by opening the `index.html` file in your web browser.
 
-
+Please note, the api has been a bit laggy with fetches so refreshes may deal with pages not loading.
 ## Features
 
 - View team rosters: Users can view the rosters of their favorite North American League of Legends teams.
